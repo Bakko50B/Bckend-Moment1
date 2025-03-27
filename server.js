@@ -137,6 +137,10 @@ app.get('/update', (req, res) => {
     db.close(); // Stäng databasen
 });
 
+app.post('/update', (req, res) => {
+    const courseId = req.query.Id;      // Hämta Id från query-parametern
+    console.log('Course ID:', courseId);  //testar
+});
 
 
 app.listen(port, () => {
