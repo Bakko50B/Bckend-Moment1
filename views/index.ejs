@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kurser - Webbutveckling miun</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
     <main>
-        <h1>Kurser</h1>
+        <div class="center">
+            <h1>Kurser</h1>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -21,21 +25,37 @@
                 </tr>
             </thead>
             <tbody>
-                <% courses.forEach(course => { %>
+                <% courses.forEach(course=> { %>
                     <tr>
-                        <td data-label="Delete" class="delete"><a href="/delete?Id=<%= course.courseId %>" onclick="return confirm('Är du säker på att du vill ta bort denna post?');" class="delete"><%= course.courseId %></a></td>
-                        <td data-label="Kurskod"><%= course.courseCode %></td>
-                        <td data-label="Kursnamn"><%= course.courseName %></td>
-                        <td data-label="Om"><a href="<%= course.courseLink %>">Läs om kursen...</a></td>
-                        <td data-label="Prog"><%= course.courseProgression %></td>
-                        <td data-label="Update" class="update"><a href="/update?Id=<%= course.courseId %>" onclick="return confirm('Är du säker på att du vill ändra denna post?');" class="update">Uppdatera</a></td>
+                        <td data-label="Delete" class="delete"><a href="/delete?Id=<%= course.courseId %>"
+                                onclick="return confirm('Är du säker på att du vill ta bort denna post?');"
+                                class="delete">
+                                <%= course.courseId %>
+                            </a></td>
+                        <td data-label="Kurskod">
+                            <%= course.courseCode %>
+                        </td>
+                        <td data-label="Kursnamn">
+                            <%= course.courseName %>
+                        </td>
+                        <td data-label="Om"><a href="<%= course.courseLink %>">Läs mer</a></td>
+                        <td data-label="Prog">
+                            <%= course.courseProgression %>
+                        </td>
+                        <td data-label="Update" class="update"><a href="/update?Id=<%= course.courseId %>"
+                                onclick="return confirm('Är du säker på att du vill ändra denna post?');">
+                                <%= course.courseId %>
+                            </a></td>
 
-                        <!-- //<% console.log(course); %> Lägg till en log här -->
                     </tr>
-                <% }); %>
+                    <% }); %>
             </tbody>
         </table>
+        <div id="insertdiv">
+            <a href="/insert">Infoga nya kurser!</a>
+        </div>
     </main>
-    
+
 </body>
+
 </html>

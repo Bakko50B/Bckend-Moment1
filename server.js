@@ -23,11 +23,13 @@ app.get('/', (req, res) => {
         //   db.close();
 
         if (err) {
+            db.close();
             return res.status(500).send('Database error');
         }
         res.render('index', { courses: rows }); // Skickar alla rader till EJS-templaten
+        db.close();
     });
-    db.close();
+
 });
 
 // DELETE route 
@@ -94,25 +96,25 @@ app.post('/insert', (req, res) => {
             db.close();
             res.redirect('/');
         });
-        
+
     } else {
         res.render("insert", {
             errors,
             courseCode: courseCode,
             courseName: courseName,
             courseLink: courseLink,
-            courseProgression: courseProgression 
+            courseProgression: courseProgression
         });
-    }    
+    }
 });
 
 app.get('/update', (req, res) => {
-    const courseId = req.query.Id; 
+    const courseId = req.query.Id;
     if (!courseId) {
         return res.status(400).send('Invalid ID');
     }
 
-    const db = new sqlite3.Database('./db/cv.db'); 
+    const db = new sqlite3.Database('./db/cv.db');
 
     // Hämta information om kursen baserat på ID
     db.get('SELECT * FROM courses WHERE courseId = ?', [courseId], (err, row) => {
@@ -125,8 +127,9 @@ app.get('/update', (req, res) => {
             return res.status(404).send('Course not found');
         }
 
-        
+
         res.render('update', {
+            errors: [],
             courseCode: row.courseCode,
             courseName: row.courseName,
             courseLink: row.courseLink,
@@ -139,16 +142,58 @@ app.get('/update', (req, res) => {
 });
 
 app.post('/update', (req, res) => {
-    //courseId = req.body;      // Hämta Id från query-parametern
     const { courseCode, courseName, courseLink, courseProgression, courseId } = req.body;
-    console.log('CourseCode:', courseCode); //testar
-    console.log('CourseName:', courseName);
-    console.log('CourseLink:', courseLink);
-    console.log('CourseProgression:', courseProgression);
-    console.log('CourseId:', courseId);  
 
+    let errors = [];
+    // Validera input
+    if (courseCode === "") {
+        errors.push("Du måste ange en kurskod för kursen!");
+    }
+    if (courseName === "") {
+        errors.push("Du måste ange ett namn för kursen!");
+    }
+    if (courseLink === "") {
+        errors.push("Du har inte angett en länk för kursen!");
+    }
+    if (courseProgression === "") {
+        errors.push("Du har inte angett en progression för kursen");
+    }
 
+    if (errors.length === 0) {
+        const db = new sqlite3.Database('./db/cv.db');
+        const stmt = db.prepare(`
+            UPDATE courses
+            SET courseCode = ?, courseName = ?, courseLink = ?, courseProgression = ?
+            WHERE courseId = ?
+        `);
+
+        // Kör prepared statement
+        stmt.run(courseCode, courseName, courseLink, courseProgression, courseId, (err) => {
+            if (err) {
+                console.error('Error updating data:', err);
+                stmt.finalize(); // Stänger statement även om det blev ett fel
+                return res.status(500).send('Failed to update course');
+            }
+
+            //console.log(`Course with ID ${courseId} updated successfully`);
+            stmt.finalize(); // Stänger statement efter lyckad exekvering
+            res.redirect('/'); // Gå tillbaka till startsidan
+        });
+
+        db.close(); // Stänger databasen efter att allt är klart
+    } else {
+        // Rendera formuläret igen med felmeddelanden och befintliga värden
+        res.render("update", {
+            errors,
+            courseCode: courseCode,
+            courseName: courseName,
+            courseLink: courseLink,
+            courseProgression: courseProgression,
+            courseId: courseId // Se till att courseId skickas tillbaka
+        });
+    }
 });
+
 
 
 app.listen(port, () => {

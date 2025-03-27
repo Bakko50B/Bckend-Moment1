@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
     <main>
         <div class="center">
             <h1>Ändra kurs!</h1>
             <h2>Ange kursinformation!</h2>
+            <% if(locals.errors.length> 0) { %>
+                <ul>
+                    <% errors.forEach((error)=> { %>
+                        <li>
+                            <%= error %>
+                        </li>
+                        <% }); %>
+                </ul>
+                <% } %>
         </div>
         <form method="post">
             <fieldset>
                 <legend>Ny kurs</legend>
-                    <label for="courseCode">Kurskod:</label><br>
-                    <input type="text" id="courseCode" name="courseCode" value="<%=courseCode %>" >
-                    <br>
-                    <label for="courseName">Kursnamn:</label><br>
-                    <input type="text" id="courseName" name="courseName" value="<%=courseName %>" >
-                    <br>
-                    <label for="courseLink">Kurslänk:</label><br>
-                    <input type="url" id="courseLink" name="courseLink" value="<%=courseLink %>">
-                    <br>
-                    <label for="courseProgression">Progression:</label><br>
-                    <input type="text" id="courseProgression" name="courseProgression" value="<%=courseProgression %>" >
-                    <br>
-                    <input type="hidden" name="courseId" value="<%= courseId %>">
-                    <button type="submit" >Lägg till kurs</button>
+                <label for="courseCode">Kurskod:</label><br>
+                <input type="text" id="courseCode" name="courseCode" value="<%=courseCode %>">
+                <br>
+                <label for="courseName">Kursnamn:</label><br>
+                <input type="text" id="courseName" name="courseName" value="<%=courseName %>">
+                <br>
+                <label for="courseLink">Kurslänk:</label><br>
+                <input type="url" id="courseLink" name="courseLink" value="<%=courseLink %>">
+                <br>
+                <label for="courseProgression">Progression:</label><br>
+                <input type="text" id="courseProgression" name="courseProgression" value="<%=courseProgression %>">
+                <br>
+                <input type="hidden" name="courseId" value="<%= courseId %>">
+                <button type="submit">Lägg till kurs</button>
             </fieldset>
         </form>
     </main>
-    
+
 </body>
+
 </html>

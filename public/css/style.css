@@ -1,11 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');   	
+
 body, html {
     background-color: #fff;
     margin: 0;
     padding: 0;
+    font-family: "Inconsolata", monospace;
+    font-size: 1.1rem;
 }
 
 main {
-    width: 80%;
+    width: 90%;
+    max-width: 1400px;
     height: 100vh;
     margin: 0 auto;
     background-color: #eaeaea;
@@ -23,6 +28,11 @@ main {
     color: green;
 }
 
+li {
+    list-style-type: none;
+
+}
+
 fieldset, form {
     border-radius: 14px;
 }
@@ -35,8 +45,29 @@ form {
 }
 
 table {
-    width: 100%;
+    width: 96%;
+    margin:0 auto;
+    background-color: #d8d8d8;
+    padding: 10px;
 }
+
+#insertdiv {
+    
+    width: 96%;
+    margin: 20px auto;
+}
+#insertdiv a {
+    display: inline-block;
+    width: fit-content;
+    height: 2rem;
+    text-decoration: none;
+    background-color: green;
+    color: white;
+    line-height: 2rem;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 
 tbody tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -46,17 +77,25 @@ tbody tr:nth-child(odd) {
     background-color: #ffffff;
 }
 
-
-th {
+td, th  {
     text-align: left;
-    ;
-}
-
-td {
     word-break: break-all;
+    line-height: 1.8rem;
+    padding-left: 2px;
+    /* font-size: 1.1rem; */
 }
 
-@media screen and (max-width: 800px) {
+#courseCode, #courseProgression {
+    width: 5rem;
+}        
+
+#courseName, #courseLink { 
+    width: 80%;        
+    max-width: 50rem;  
+    min-width: 10rem; 
+   
+}
+@media screen and (max-width: 980px) {
     main {
         width: 96%;
     }
