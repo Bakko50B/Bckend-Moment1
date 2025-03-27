@@ -51,28 +51,59 @@ app.get('/delete', (req, res) => {
 });
 
 app.get('/insert', (req, res) => {
-    res.render('insert', (req, res));
+    res.render('insert', {
+        errors: []
+    });
 });
 
 app.post('/insert', (req, res) => {
     const { courseCode, courseName, courseLink, courseProgression } = req.body; // Hämta data från formuläret
 
-    const db = new sqlite3.Database('./db/cv.db');
+    let errors = [];
+    // validera input
+    if (courseCode === "") {
+        errors.push("Du måste ange en kurskod för kursen!");
+    }
+    if (courseName === "") {
+        errors.push("Du måste ange ett namn för kursen!");
+    }
+    if (courseLink === "") {
+        errors.push("Du har inte angett en länk för kursen!");
+    }
+    if (courseProgression === "") {
+        errors.push("Du har inte angett en progression för kursen")
+    }
 
-    const stmt = db.prepare('INSERT INTO courses (courseCode, courseName, courseLink, courseProgression) VALUES (?, ?, ?, ?)');
+    // Är allt korrekt ifyllt
+    if (errors.length === 0) {
 
-    stmt.run(courseCode, courseName, courseLink, courseProgression, (err) => {
-        if (err) {
-            console.error('Error inserting data:', err);
-            return res.status(500).send('Failed to insert data');
-        }
+        const db = new sqlite3.Database('./db/cv.db');
+        const stmt = db.prepare('INSERT INTO courses (courseCode, courseName, courseLink, courseProgression) VALUES (?, ?, ?, ?)');
 
-        console.log('Data successfully inserted!');
-        stmt.finalize();
-        res.redirect('/');
-    });
+        stmt.run(courseCode, courseName, courseLink, courseProgression, (err) => {
+            if (err) {
+                console.error('Error inserting data:', err);
+                return res.status(500).send('Failed to insert data');
+            }
+            console.log('Data successfully inserted!');
+            stmt.finalize();
+            db.close();
+            res.redirect('/');
+        });
+        
+    } else {
+        res.render("insert", {
+            errors,
+            courseCode: courseCode,
+            courseName: courseName,
+            courseLink: courseLink,
+            courseProgression: courseProgression 
+        });
+    }
+  
 
-    db.close();
+
+    
 });
 
 

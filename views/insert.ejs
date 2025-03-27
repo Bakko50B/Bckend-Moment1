@@ -6,6 +6,14 @@
     <title>Document</title>
 </head>
 <body>
+    <% if(locals.errors.length > 0) { %>
+        <ul>
+        <% errors.forEach((error) => { %>
+            <li><%= error %></li>
+     <%   }); %>
+        </ul>
+    <% } %>  
+
     <form method="post">
         <fieldset>
             <legend>Ny kurs</legend>
