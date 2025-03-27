@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurser - Webbutveckling miun</title>
+</head>
+<body>
+    <main>
+        <h1>Kurser</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Delete</th>
+                    <th>Kurskod</th>
+                    <th>Kursnamn</th>
+                    <th>Om</th>
+                    <th>Prog</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% courses.forEach(course => { %>
+                    <tr>
+                        <td><a href="/delete?Id=<%= course.courseId %>"><%= course.courseId %></a></td>
+                        <td><%= course.courseCode %></td>
+                        <td><%= course.courseName %></td>
+                        <td><a href="<%= course.courseLink %>">Läs om kursen...</a></td>
+                        <td><%= course.courseProgression %></td>
+                        <!-- //<% console.log(course); %> Lägg till en log här -->
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </main>
+    
+</body>
+</html>
