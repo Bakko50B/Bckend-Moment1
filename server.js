@@ -139,8 +139,13 @@ app.get('/update', (req, res) => {
 });
 
 app.post('/update', (req, res) => {
-    courseId = req.body.courseId;      // Hämta Id från query-parametern
-    console.log('CourseId:', courseId);  //testar
+    //courseId = req.body;      // Hämta Id från query-parametern
+    const { courseCode, courseName, courseLink, courseProgression, courseId } = req.body;
+    console.log('CourseCode:', courseCode); //testar
+    console.log('CourseName:', courseName);
+    console.log('CourseLink:', courseLink);
+    console.log('CourseProgression:', courseProgression);
+    console.log('CourseId:', courseId);  
 
 
 });
