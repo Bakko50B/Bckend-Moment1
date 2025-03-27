@@ -130,7 +130,8 @@ app.get('/update', (req, res) => {
             courseCode: row.courseCode,
             courseName: row.courseName,
             courseLink: row.courseLink,
-            courseProgression: row.courseProgression
+            courseProgression: row.courseProgression,
+            courseId: courseId
         });
     });
 
@@ -138,8 +139,10 @@ app.get('/update', (req, res) => {
 });
 
 app.post('/update', (req, res) => {
-    const courseId = req.query.Id;      // Hämta Id från query-parametern
-    console.log('Course ID:', courseId);  //testar
+    courseId = req.body.courseId;      // Hämta Id från query-parametern
+    console.log('CourseId:', courseId);  //testar
+
+
 });
 
 

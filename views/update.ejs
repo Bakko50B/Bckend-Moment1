@@ -15,7 +15,7 @@
         <form method="post">
             <fieldset>
                 <legend>Ny kurs</legend>
-                     <label for="courseCode">Kurskod:</label><br>
+                    <label for="courseCode">Kurskod:</label><br>
                     <input type="text" id="courseCode" name="courseCode" value="<%=courseCode %>" >
                     <br>
                     <label for="courseName">Kursnamn:</label><br>
@@ -27,7 +27,8 @@
                     <label for="courseProgression">Progression:</label><br>
                     <input type="text" id="courseProgression" name="courseProgression" value="<%=courseProgression %>" >
                     <br>
-                    <button type="submit">Lägg till kurs</button>
+                    <input type="hidden" name="courseId" value="<%= courseId %>">
+                    <button type="submit" >Lägg till kurs</button>
             </fieldset>
         </form>
     </main>
