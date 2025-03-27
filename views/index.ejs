@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kurser - Webbutveckling miun</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <main>
@@ -11,21 +12,24 @@
         <table>
             <thead>
                 <tr>
-                    <th>Delete</th>
+                    <th class="delete">Delete</th>
                     <th>Kurskod</th>
                     <th>Kursnamn</th>
                     <th>Om</th>
                     <th>Prog</th>
+                    <th class="update">Update</th>
                 </tr>
             </thead>
             <tbody>
                 <% courses.forEach(course => { %>
                     <tr>
-                        <td><a href="/delete?Id=<%= course.courseId %>"><%= course.courseId %></a></td>
-                        <td><%= course.courseCode %></td>
-                        <td><%= course.courseName %></td>
-                        <td><a href="<%= course.courseLink %>">Läs om kursen...</a></td>
-                        <td><%= course.courseProgression %></td>
+                        <td data-label="Delete" class="delete"><a href="/delete?Id=<%= course.courseId %>" onclick="return confirm('Är du säker på att du vill ta bort denna post?');" class="delete"><%= course.courseId %></a></td>
+                        <td data-label="Kurskod"><%= course.courseCode %></td>
+                        <td data-label="Kursnamn"><%= course.courseName %></td>
+                        <td data-label="Om"><a href="<%= course.courseLink %>">Läs om kursen...</a></td>
+                        <td data-label="Prog"><%= course.courseProgression %></td>
+                        <td data-label="Update" class="update"><a href="/update?Id=<%= course.courseId %>" onclick="return confirm('Är du säker på att du vill ändra denna post?');" class="update">Uppdatera</a></td>
+
                         <!-- //<% console.log(course); %> Lägg till en log här -->
                     </tr>
                 <% }); %>

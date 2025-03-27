@@ -1,0 +1,103 @@
+body, html {
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    width: 80%;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: #eaeaea;
+}
+
+.center {
+    text-align: center;
+}
+
+.delete {
+    color: red;
+}
+
+.update {
+    color: green;
+}
+
+fieldset, form {
+    border-radius: 14px;
+}
+
+form {    
+    width: 90%;
+    margin:100px auto 0;
+    padding: 10px;
+    background-color: #f9f8f8;
+}
+
+table {
+    width: 100%;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+
+th {
+    text-align: left;
+    ;
+}
+
+td {
+    word-break: break-all;
+}
+
+@media screen and (max-width: 800px) {
+    main {
+        width: 96%;
+    }
+
+    thead {
+        display: none;
+        /* Dölj tabellhuvudet på små skärmar */
+    }
+
+    tr {
+        display: block;
+        /* Gör varje rad till ett block */
+        margin-bottom: 10px;
+        /* Skapa mellanrum mellan rader */
+    }
+
+    td {
+        display: block;
+        /* Placera varje cell på en egen rad */
+        text-align: left;
+        /* Justera texten till vänster */
+        padding-left: 50%;
+        /* Skapa utrymme för etiketten */
+        position: relative;
+    }
+
+    td:nth-child(odd) {
+        background-color: #eaeaea;
+    }
+
+    td::before {
+        content: attr(data-label);
+        /* Hämta och visa värdet från data-label */
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding-left: 10px;
+        font-weight: bold;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+}

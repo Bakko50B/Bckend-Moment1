@@ -3,22 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert - Kurser</title>
+    <title>Document</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <main>
         <div class="center">
-            <h1>Ny kurs!</h1>
+            <h1>Ändra kurs!</h1>
             <h2>Ange kursinformation!</h2>
         </div>
-        <% if(locals.errors.length > 0) { %>
-            <ul>
-            <% errors.forEach((error) => { %>
-                <li><%= error %></li>
-         <%   }); %>
-            </ul>
-        <% } %>
         <form method="post">
             <fieldset>
                 <legend>Ny kurs</legend>
@@ -37,7 +30,7 @@
                     <button type="submit">Lägg till kurs</button>
             </fieldset>
         </form>
-        
     </main>
+    
 </body>
 </html>

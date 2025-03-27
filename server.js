@@ -52,7 +52,11 @@ app.get('/delete', (req, res) => {
 
 app.get('/insert', (req, res) => {
     res.render('insert', {
-        errors: []
+        errors: [],
+        courseCode: '', // Dessa skickas med för att förhindra "undefined"
+        courseName: '',
+        courseLink: '',
+        courseProgression: ''
     });
 });
 
@@ -99,12 +103,40 @@ app.post('/insert', (req, res) => {
             courseLink: courseLink,
             courseProgression: courseProgression 
         });
-    }
-  
-
-
-    
+    }    
 });
+
+app.get('/update', (req, res) => {
+    const courseId = req.query.Id; 
+    if (!courseId) {
+        return res.status(400).send('Invalid ID');
+    }
+
+    const db = new sqlite3.Database('./db/cv.db'); 
+
+    // Hämta information om kursen baserat på ID
+    db.get('SELECT * FROM courses WHERE courseId = ?', [courseId], (err, row) => {
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).send('Failed to fetch course data');
+        }
+
+        if (!row) {
+            return res.status(404).send('Course not found');
+        }
+
+        
+        res.render('update', {
+            courseCode: row.courseCode,
+            courseName: row.courseName,
+            courseLink: row.courseLink,
+            courseProgression: row.courseProgression
+        });
+    });
+
+    db.close(); // Stäng databasen
+});
+
 
 
 app.listen(port, () => {
