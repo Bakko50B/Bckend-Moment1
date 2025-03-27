@@ -2,20 +2,17 @@
  * Server
  * 
  */
-//const express = require('express');
+
 const sqlite3 = require('sqlite3').verbose();
-//const { open } = require('sqlite');
-
 const db = new sqlite3.Database("./db/cv.db")
-
 
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.set("view engine", "ejs");              //View eninge ejs
-app.use(express.static("public"));          //Statiska filer i public
+app.set("view engine", "ejs");                          //View eninge ejs
+app.use(express.static("public"));                      //Statiska filer i public
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Route för att hämta alla användare och rendera dem i en tabell
@@ -28,13 +25,12 @@ app.get('/', (req, res) => {
         if (err) {
             return res.status(500).send('Database error');
         }
-        //console.log(rows); // Loggar vad som hämtas från databasencl
         res.render('index', { courses: rows }); // Skickar alla rader till EJS-templaten
     });
     db.close();
 });
 
-// DELETE route with prepared statement
+// DELETE route 
 app.get('/delete', (req, res) => {
     const courseId = req.query.Id;
 
@@ -49,13 +45,34 @@ app.get('/delete', (req, res) => {
             return res.status(500).send("Failed to delete course");
         }
         console.log(`Course with ID ${courseId} deleted successfully.`);
-        stmt.finalize(); // Stäng statement
+        stmt.finalize();
         res.redirect('/'); // Gå tillbaka till startsidan
     });
 });
 
 app.get('/insert', (req, res) => {
     res.render('insert', (req, res));
+});
+
+app.post('/insert', (req, res) => {
+    const { courseCode, courseName, courseLink, courseProgression } = req.body; // Hämta data från formuläret
+
+    const db = new sqlite3.Database('./db/cv.db');
+
+    const stmt = db.prepare('INSERT INTO courses (courseCode, courseName, courseLink, courseProgression) VALUES (?, ?, ?, ?)');
+
+    stmt.run(courseCode, courseName, courseLink, courseProgression, (err) => {
+        if (err) {
+            console.error('Error inserting data:', err);
+            return res.status(500).send('Failed to insert data');
+        }
+
+        console.log('Data successfully inserted!');
+        stmt.finalize();
+        res.redirect('/');
+    });
+
+    db.close();
 });
 
 
