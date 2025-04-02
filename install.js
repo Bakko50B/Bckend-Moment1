@@ -14,10 +14,10 @@ db.serialize(() => {
     db.run(`
         CREATE TABLE "courses" (
         "courseId"	INTEGER NOT NULL,
-        "courseCode"	TEXT(20),
-        "courseName"	TEXT(50),
-        "courseLink"	TEXT(150),
-        "courseProgression"	TEXT(4),
+        "courseCode"	TEXT(20) UNIQUE,
+        "courseName"	TEXT(50) UNIQUE,
+        "courseLink"	TEXT(150) UNIQUE,
+        "courseProgression"	TEXT(4) CHECK(courseProgression IN ('A', 'B', 'C')) ,
         "createdTime"	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY("courseId" AUTOINCREMENT));    
     `);

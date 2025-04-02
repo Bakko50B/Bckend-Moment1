@@ -1,6 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');   	
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
 
-body, html {
+/* Nollställer */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+body,
+html {
     background-color: #fff;
     margin: 0;
     padding: 0;
@@ -11,10 +21,14 @@ body, html {
 main {
     width: 90%;
     max-width: 1400px;
-    height: 100vh;
+    min-height: calc(100vh - 40px);
+    /* Justera för navigationens höjd */
     margin: 0 auto;
     background-color: #eaeaea;
+    padding-bottom: 60px;
+    /* Skapa utrymme för navigationen */
 }
+
 
 .center {
     text-align: center;
@@ -33,33 +47,47 @@ li {
 
 }
 
-fieldset, form {
+fieldset,
+form {
     border-radius: 14px;
 }
 
-form {    
+form {
     width: 90%;
-    margin:100px auto 0;
+    margin: 100px auto 0;
     padding: 10px;
     background-color: #f9f8f8;
 }
 
+form button {
+    display: inline-block;
+    width: fit-content;
+    text-decoration: none;
+    background-color: green;
+    color: white;
+    line-height: 2rem;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+
 table {
     width: 96%;
-    margin:0 auto;
+    margin: 0 auto;
     background-color: #d8d8d8;
     padding: 10px;
 }
 
 #insertdiv {
-    
+
     width: 96%;
     margin: 20px auto;
 }
+
 #insertdiv a {
     display: inline-block;
     width: fit-content;
-    height: 2rem;
     text-decoration: none;
     background-color: green;
     color: white;
@@ -77,27 +105,97 @@ tbody tr:nth-child(odd) {
     background-color: #ffffff;
 }
 
-td, th  {
+td,
+th {
     text-align: left;
     word-break: break-all;
     line-height: 1.8rem;
     padding-left: 2px;
-    /* font-size: 1.1rem; */
 }
 
-#courseCode, #courseProgression {
+#courseCode,
+#courseProgression {
     width: 5rem;
-}        
-
-#courseName, #courseLink { 
-    width: 80%;        
-    max-width: 50rem;  
-    min-width: 10rem; 
-   
 }
+
+#courseName,
+#courseLink {
+    width: 80%;
+    max-width: 50rem;
+    min-width: 10rem;
+
+}
+
+.errors {
+    display: flex;
+    flex-direction: column; /* Behåll vertikal stapling av element */
+    position: relative;
+    width: 50%; /* Eller en bredd du föredrar */
+    left: 50%; /* Flytta mitten av `<div>` till mitten av containern */
+    transform: translateX(-50%); /* Centrerar `<div>` horisontellt */
+    text-align: left; /* Justera texten till vänster inuti `<div>` */
+    background-color: #f8f8f8; /* Valfri bakgrundsfärg för bättre visualisering */
+    padding: 20px; /* Lägg till lite utrymme inuti `<div>` */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Valfri skugga */
+}
+
+.navigation {
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #575757;
+}
+
+.navigation ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: space-around;
+    background-color: #f1f1f16b;
+}
+
+.navigation li a {
+    display: inline-block;
+    margin: 2px;
+    padding: 0 3rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+
+}
+
+
+@media (max-width: 768px) {
+    .navigation {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .navigation li a {
+        padding: 0 25px;
+        /* background-color: #eaeaea; */
+    }
+}
+
+
 @media screen and (max-width: 980px) {
+    body {
+        overflow-y: auto;
+
+    }
+
     main {
+        height: auto;
+        /* Låt innehållet anpassa sig dynamiskt */
+        min-height: calc(100vh - 60px);
+        /* Anpassa till navigationen */
         width: 96%;
+        padding-bottom: 60px;
     }
 
     thead {

@@ -20,13 +20,12 @@ app.get('/', (req, res) => {
     const db = new sqlite3.Database('./db/cv.db');
 
     db.all('SELECT * FROM courses', (err, rows) => {
-        //   db.close();
-
+        
         if (err) {
             db.close();
             return res.status(500).send('Database error');
         }
-        res.render('index', { courses: rows }); // Skickar alla rader till EJS-templaten
+        res.render('index', { courses: rows }); 
         db.close();
     });
 
@@ -52,6 +51,7 @@ app.get('/delete', (req, res) => {
     });
 });
 
+// Insert get-route
 app.get('/insert', (req, res) => {
     res.render('insert', {
         errors: [],
@@ -62,11 +62,12 @@ app.get('/insert', (req, res) => {
     });
 });
 
+// Insert post-route
 app.post('/insert', (req, res) => {
     const { courseCode, courseName, courseLink, courseProgression } = req.body; // Hämta data från formuläret
 
     let errors = [];
-    // validera input
+    // Validera input
     if (courseCode === "") {
         errors.push("Du måste ange en kurskod för kursen!");
     }
@@ -77,27 +78,57 @@ app.post('/insert', (req, res) => {
         errors.push("Du har inte angett en länk för kursen!");
     }
     if (courseProgression === "") {
-        errors.push("Du har inte angett en progression för kursen")
+        errors.push("Du har inte angett en progression för kursen");
     }
 
-    // Är allt korrekt ifyllt
     if (errors.length === 0) {
-
         const db = new sqlite3.Database('./db/cv.db');
         const stmt = db.prepare('INSERT INTO courses (courseCode, courseName, courseLink, courseProgression) VALUES (?, ?, ?, ?)');
 
         stmt.run(courseCode, courseName, courseLink, courseProgression, (err) => {
             if (err) {
-                console.error('Error inserting data:', err);
-                return res.status(500).send('Failed to insert data');
+                console.error('Fel vid inmatning av data:', err);
+
+                // Kontrollera om felet orsakas av UNIQUE eller CHECK constraint
+                if (err.code === 'SQLITE_CONSTRAINT') {
+                    
+                    if (err.message.includes('courseCode')) {
+                        errors.push("Kurskoden finns redan!");
+                    }
+                    if (err.message.includes('courseName')) {
+                        errors.push("Kursnamnet finns redan!");
+                    }
+                    if (err.message.includes('courseLink')) {
+                        errors.push("Kurslänken finns redan!");
+                    }
+                    if (err.message.includes('courseProgression')) {
+                        errors.push("Ogiltig kursprogression! Endast 'A', 'B' eller 'C' är tillåtna.");
+                    }
+                
+                    if (errors.length === 0) {
+                        errors.push("Ett unikt fält har en konflikt!");
+                    }
+                } else {
+                    errors.push("Ett oväntat fel inträffade. Försök igen.");
+                }         
+               
+                return res.render("insert", {
+                    errors,
+                    courseCode,
+                    courseName,
+                    courseLink,
+                    courseProgression
+                });
             }
-            console.log('Data successfully inserted!');
+
+            console.log('Ny information införd i databasen!');
             stmt.finalize();
             db.close();
             res.redirect('/');
         });
 
     } else {
+        // Rendera formuläret igen med valideringsfel
         res.render("insert", {
             errors,
             courseCode: courseCode,
@@ -108,10 +139,11 @@ app.post('/insert', (req, res) => {
     }
 });
 
+
 app.get('/update', (req, res) => {
     const courseId = req.query.Id;
     if (!courseId) {
-        return res.status(400).send('Invalid ID');
+        return res.status(400).send('Fel med ID');
     }
 
     const db = new sqlite3.Database('./db/cv.db');
@@ -126,7 +158,6 @@ app.get('/update', (req, res) => {
         if (!row) {
             return res.status(404).send('Course not found');
         }
-
 
         res.render('update', {
             errors: [],
@@ -167,34 +198,65 @@ app.post('/update', (req, res) => {
             WHERE courseId = ?
         `);
 
-        // Kör prepared statement
         stmt.run(courseCode, courseName, courseLink, courseProgression, courseId, (err) => {
             if (err) {
-                console.error('Error updating data:', err);
-                stmt.finalize(); // Stänger statement även om det blev ett fel
-                return res.status(500).send('Failed to update course');
+                console.error('Fel vid uppdatering av data:', err);
+
+                // Kontrollera om felet orsakas av UNIQUE eller CHECK constraint
+                if (err.code === 'SQLITE_CONSTRAINT') {
+                    if (err.message.includes('courseCode')) {
+                        errors.push("Kurskoden finns redan!");
+                    }
+                    if (err.message.includes('courseName')) {
+                        errors.push("Kursnamnet finns redan!");
+                    }
+                    if (err.message.includes('courseLink')) {
+                        errors.push("Kurslänken finns redan!");
+                    }
+                    if (err.message.includes('courseProgression')) {
+                        errors.push("Ogiltig kursprogression! Endast 'A', 'B' eller 'C' är tillåtna.");
+                    }
+                    if (errors.length === 0) {
+                        errors.push("Ett unikt fält har en konflikt!");
+                    }
+                } else {
+                    errors.push("Ett oväntat fel inträffade. Försök igen.");
+                }
+
+                // Rendera formuläret igen med felmeddelanden
+                return res.render("update", {
+                    errors,
+                    courseCode,
+                    courseName,
+                    courseLink,
+                    courseProgression,
+                    courseId
+                });
             }
 
-            //console.log(`Course with ID ${courseId} updated successfully`);
-            stmt.finalize(); // Stänger statement efter lyckad exekvering
+            console.log(`Coursetabellen med ID ${courseId} uppdaterades`);
+            stmt.finalize(); 
+            db.close();
             res.redirect('/'); // Gå tillbaka till startsidan
         });
 
-        db.close(); // Stänger databasen efter att allt är klart
     } else {
-        // Rendera formuläret igen med felmeddelanden och befintliga värden
+        
         res.render("update", {
             errors,
             courseCode: courseCode,
             courseName: courseName,
             courseLink: courseLink,
             courseProgression: courseProgression,
-            courseId: courseId // Se till att courseId skickas tillbaka
+            courseId: courseId 
         });
     }
 });
 
 
+app.get('/about', (req, res) => {
+    res.render("about");
+});
 
 app.listen(port, () => {
     console.log("Laboration ett startade på port: " + port + "!");
