@@ -7,8 +7,6 @@
     box-sizing: border-box;
 }
 
-
-
 body,
 html {
     background-color: #fff;
@@ -18,18 +16,52 @@ html {
     font-size: 1.1rem;
 }
 
+.navigation {
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #7f7f7f;
+}
+
+.navigation ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: space-around;
+    background-color: #f1f1f1cf;
+}
+
+.navigation li a {
+    display: inline-block;
+    margin: 2px;
+    padding: 0 3rem;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: black;
+    background-color: #f1f1f1cf;
+}
+
+.navigation li a:hover {
+    color: white;
+    background-color: #4c4c4c;
+}
+
+.navigation li a.active {
+     color: white;
+    background-color: #2d2d2d;
+}
+
 main {
     width: 90%;
     max-width: 1400px;
     min-height: calc(100vh - 40px);
-    /* Justera för navigationens höjd */
     margin: 0 auto;
     background-color: #eaeaea;
     padding-bottom: 60px;
-    /* Skapa utrymme för navigationen */
 }
-
-
+    
 .center {
     text-align: center;
 }
@@ -53,13 +85,14 @@ form {
 }
 
 form {
-    width: 90%;
-    margin: 100px auto 0;
+    width: 70%;
+    margin: 10px auto 0;
     padding: 10px;
     background-color: #f9f8f8;
 }
 
 form button {
+    font-size: 1.1rem;
     display: inline-block;
     width: fit-content;
     text-decoration: none;
@@ -68,9 +101,18 @@ form button {
     line-height: 2rem;
     padding: 5px;
     border-radius: 5px;
-    margin: 10px 0;
+    margin: 10px 0 5px 5px;
+    transition: .5s;
 }
 
+form label, form input{
+    margin-left: 5px;
+}
+
+form button:hover {
+    color: black;
+    background-color: rgb(115, 192, 0);
+}
 
 table {
     width: 96%;
@@ -94,6 +136,12 @@ table {
     line-height: 2rem;
     padding: 5px;
     border-radius: 5px;
+    transition: .5s;    
+}
+
+#insertdiv a:hover {
+    color: black;
+    background-color: rgb(115, 192, 0);
 }
 
 
@@ -128,46 +176,40 @@ th {
 
 .errors {
     display: flex;
-    flex-direction: column; /* Behåll vertikal stapling av element */
+    flex-direction: column; 
     position: relative;
-    width: 50%; /* Eller en bredd du föredrar */
-    left: 50%; /* Flytta mitten av `<div>` till mitten av containern */
-    transform: translateX(-50%); /* Centrerar `<div>` horisontellt */
-    text-align: left; /* Justera texten till vänster inuti `<div>` */
-    background-color: #f8f8f8; /* Valfri bakgrundsfärg för bättre visualisering */
-    padding: 20px; /* Lägg till lite utrymme inuti `<div>` */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Valfri skugga */
+    width: 50%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    text-align: left; 
+    background-color: #f8f8f8; 
+    padding: 20px; 
+    color: red;
+    margin: 10px 0 15px;
+    line-height: 1.4rem;
+    border-radius: 5px;
+    box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.452); 
 }
 
-.navigation {
-    height: fit-content;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: #575757;
+.infoblock {
+    width: 80%;
+    margin: 10px auto;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.452); 
 }
 
-.navigation ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    justify-content: space-around;
-    background-color: #f1f1f16b;
+.infoblock p {
+    margin-top: .6rem;
+    font-size: 1.5rem;
 }
 
-.navigation li a {
-    display: inline-block;
-    margin: 2px;
-    padding: 0 3rem;
-    font-size: 1.2rem;
-    text-decoration: none;
-    color: black;
-
+.infoblock h2 {
+    margin: 1rem 0 .5rem;
 }
 
-
-@media (max-width: 768px) {
+@media screen and (max-width: 600px) {
     .navigation {
         position: fixed;
         bottom: 0;
@@ -178,7 +220,14 @@ th {
 
     .navigation li a {
         padding: 0 25px;
-        /* background-color: #eaeaea; */
+    }
+
+    form {
+        width: 96%;
+    }
+
+    .infoblock {
+        width: 96%;
     }
 }
 
@@ -191,32 +240,26 @@ th {
 
     main {
         height: auto;
-        /* Låt innehållet anpassa sig dynamiskt */
-        min-height: calc(100vh - 60px);
-        /* Anpassa till navigationen */
+        min-height: calc(100vh - 60px);        
         width: 96%;
         padding-bottom: 60px;
     }
 
     thead {
         display: none;
-        /* Dölj tabellhuvudet på små skärmar */
+        
     }
 
     tr {
         display: block;
-        /* Gör varje rad till ett block */
         margin-bottom: 10px;
-        /* Skapa mellanrum mellan rader */
+        
     }
 
     td {
         display: block;
-        /* Placera varje cell på en egen rad */
         text-align: left;
-        /* Justera texten till vänster */
         padding-left: 50%;
-        /* Skapa utrymme för etiketten */
         position: relative;
     }
 

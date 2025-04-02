@@ -1,24 +1,85 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
     <header>
         <nav class="navigation">
             <ul>
                 <li><a href="/">Hem</a></li>
                 <li><a href="/insert">Mata in</a></li>
-                <li><a href="/about">Om</a></li>
+                <li><a href="/about" class="active">Om</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <h1 class="center">Om uppgiften!</h1>
+        <div class="center">
+            <h1>Om uppgiften!</h1>
+
+        </div>
+        <article class="infoblock">
+            <h2>Uppgiften</h2>
+            <p>Webbplatsen används som redovisning av Moment 1 i kursen Backend-baserad webbutveckling (distans) vid
+                Mitthögskolan.</p>
+            <p>Presentationen av kurserna har jag valt att göra i en tabell som representerar de olika kolumnerna i
+                databasens tabell. Vid mindre skärmar så har jag hittat, med hjälp av tutorial från nätet, en lösning
+                som
+                presenterar varje tabellrad som "ett kort".</p>
+            <h2>Min lösning</h2>
+            <p>
+                Jag har löst min uppgift med hjälp av de verktyg som kursen introducerat. En serverlösning i form av
+                installation av Express.js ligger som bas, och jag har valt att använda sqlite som databas.
+            </p>
+            <p>
+                Jag har följt kursens upplägg med installation av de olika paketen, och har som bas för själva
+                hanteringen
+                av servern en JavaScriptfil som jag har gett namnet server.js.
+                <br>I uppstart av sidan finns redan två kurser inmatade i databasen.
+                <br>Databasen och de två införda kurserna finns i filen install.js
+            </p>
+            <h2>Sqlite</h2>
+            <p>Innan jag valde sqlite som databashanterare för uppgiften hade jag testat lite olika databaser och gjort
+                lite enkla övningar i Visual Studio Code med databaserna som jag skapat.</p>
+            <P>I en tidigare kurs och även innan jag började webbutvecklingsprogrammet på Mitthögskolan hade jag
+                erfarenhet av mySql, med tillhörande administrationsverktyg, phpMyAdmin.</P>
+            <p>Med den bakgrunden och nyfikenhet på att prova något annat så valde jag att ta sqlite i denna uppgift.
+                <br>Fördelen med att ha databasmotorn integrerad i databasfilen lät lockande. Och med tanke på den
+                lilla datamängd som förväntas hamna i min databastabell så finns det ingen risk för dålig prestanda.
+            </p>
+            <p>Vid installationen av <a href="https://www.npmjs.com/package/sqlite3">paketet sqlite3</a> så fick jag en
+                hel del varningar, så jag bestämde mig då att istället använda <a
+                    href="https://www.npmjs.com/package/sqlite">sqlite paketet.</a> Nu visade det sig att när man
+                använder det paketet (sqlite) så behöver sqlite3 installeras i alla fall. <br>Så, tillbaka till ruta ett
+                igen...</p>
+            <p>
+                Jag kände mig tämligen säker på att jag kunde ignorera varningarna då jag fick svar av Mattias Dahlgren
+                att det gick att använda sqlite3 utan problem.
+            </p>
+            <p>
+                Jag har utöver det som jag hittat på kursportalen bland annat letat errorcode för sqlite. Jag hade först
+                en generell
+                hantering av fel vid införande då det gäller Constraints. Jag hittade att man kunde leta efter
+                error.message.includes och på så sätt skriva ut bättre felmeddelanden.</p>
+            <p>
+                Jag har försökt framkalla fel, och det verkar som om jag lyckas fånga upp dem.
+            </p>
+            <h2>Slutsatser</h2>
+            <p>När det handlar om webbprogrammering och utveckling för webben så finns det ett stort behov av att kunna
+                hantera kopplingar till databaser. Det är ett bra sätt att spara data på och även att presnetera data på
+                förstås.</p>
+            <p>Jag upplever det som en förutsättning för webbutveckling att veta hur man gör detta. </p>
+            <p>Kursen känns viktig!</p>
+            <p>Att behärska och kunna alla steg utantill kommer nog ta ett tag, speciellt då det finns många olika
+                databassystem att välja på. Någonstans ska man börja!
+            </p>
+            <p>Detta är min början!</p>
+        </article>
     </main>
-    
 </body>
 </html>
