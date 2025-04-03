@@ -7,11 +7,11 @@
     box-sizing: border-box;
 }
 
-body,
-html {
+body {
     background-color: #fff;
     margin: 0;
     padding: 0;
+    height: fit-content;
     font-family: "Inconsolata", monospace;
     font-size: 1.1rem;
 }
@@ -66,12 +66,14 @@ main {
     text-align: center;
 }
 
-.delete {
+.delete a {
     color: red;
+    font-weight: bold   ;
 }
 
-.update {
+.update a {
     color: green;
+    font-weight: bold;
 }
 
 li {
@@ -196,13 +198,20 @@ th {
     margin: 10px auto;
     background-color: #f9f9f9;
     padding: 10px;
-    border-radius: 5px;
+    padding-bottom: 4rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 7px;
     box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.452); 
 }
 
 .infoblock p {
     margin-top: .6rem;
     font-size: 1.5rem;
+}
+
+.infoblock span {
+    font-family: "Inconsolata", monospace;
+    letter-spacing: .1rem;
 }
 
 .infoblock h2 {
@@ -226,11 +235,15 @@ th {
         display: none;
         
     }
+    table {
+        background-color: #2D2D2D;
+    }
+    
 
     tr {
         display: block;
-        margin-bottom: 10px;
-        
+        margin-bottom: 40px;
+        line-height: 2rem;        
     }
 
     td {
@@ -281,6 +294,7 @@ th {
     }
 
     .infoblock {
+        
         width: 96%;
     }
 }
