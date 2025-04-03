@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Om - Moment 1 Backend</title>
     <link rel="stylesheet" href="/css/style.css">
-
+    <!-- Faviconer och manifest -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -26,7 +26,6 @@
     <main>
         <div class="center">
             <h1>Om uppgiften!</h1>
-
         </div>
         <article class="infoblock">
             <h2>Uppgiften</h2>
@@ -72,10 +71,12 @@
                 Jag har utöver det som jag hittat på kursportalen bland annat letat errorcode för sqlite. Jag hade först
                 en generell
                 hantering av fel vid införande då det gäller Constraints. Jag hittade att man kunde leta efter
-                error.message.includes och på så sätt skriva ut bättre felmeddelanden.</p>
-            <p>
-                Jag har försökt framkalla fel, och det verkar som om jag lyckas fånga upp dem.
+                error.message.includes och på så sätt skriva ut bättre felmeddelanden.
             </p>
+            <p>Jag jobbade ett tag med att hitta rätt placering av <span>db.clos()</span>. Jag hade logiska fel av
+                placeringen av denna kodrad i några av routerna. Men det löste sig. Jag har inte upplevt några fel
+                nyligen i alla fall.</p>
+
             <h2>Render</h2>
             <p>Innan denna kurs hade jag ingen erfarenhet av att använda Render för publicering av webbplatser. Som
                 alternativ visning av webbplasten och uppgiften finns möjligheten att spela in en video. Jag hade det
@@ -85,6 +86,13 @@
                 <br>Nu kan de som vill se resultatet välja hur länge de spenderar sin tid här!
                 <br>En fantastik möjlighet med denna tjänst!
             </p>
+            <h2>Validering</h2>
+            <p>Html-koden är validerad.
+                <br>Css-koden är också validerad.
+            </p>
+            <p>Det finns inga felmeddelanden i konsollen vid körning av webbplatsen.</p>
+            <p>I Wave så klagas det på att jag har röda siffror för kulumnen med att ta bort från databasen. Jag väljer
+                trots det att ha kvar dessa då det kan upplevas som tydligare att något "illa" kan hända med de röda siffrorna där.</p>
             <h2>Slutsatser</h2>
             <p>När det handlar om webbprogrammering och utveckling för webben så finns det ett stort behov av att kunna
                 hantera kopplingar till databaser. Det är ett bra sätt att spara data på och även att presentera data på

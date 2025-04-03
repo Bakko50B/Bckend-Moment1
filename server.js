@@ -15,7 +15,7 @@ app.set("view engine", "ejs");                          //View eninge ejs
 app.use(express.static("public"));                      //Statiska filer i public
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Route för att hämta alla användare och rendera dem i en tabell
+// Route på index för att hämta alla användare och rendera dem i en tabell
 app.get('/', (req, res) => {
     const db = new sqlite3.Database('./db/cv.db');
 

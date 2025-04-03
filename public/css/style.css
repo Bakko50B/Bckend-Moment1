@@ -78,7 +78,6 @@ main {
 
 li {
     list-style-type: none;
-
 }
 
 fieldset,
@@ -124,7 +123,6 @@ table {
 }
 
 #insertdiv {
-
     width: 96%;
     margin: 20px auto;
 }
@@ -173,7 +171,6 @@ th {
     width: 80%;
     max-width: 50rem;
     min-width: 10rem;
-
 }
 
 .errors {
@@ -218,10 +215,10 @@ th {
     margin: 1rem 0 .5rem;
 }
 
+/* Mindre än 981px */
 @media screen and (max-width: 980px) {
     body {
         overflow-y: auto;
-
     }
 
     main {
@@ -232,14 +229,13 @@ th {
     }
 
     thead {
-        display: none;
-        
+        display: none;     
     }
+
     table {
         background-color: #2D2D2D;
     }
     
-
     tr {
         display: block;
         margin-bottom: 40px;
@@ -256,10 +252,14 @@ th {
     td:nth-child(odd) {
         background-color: #eaeaea;
     }
+        
+    tbody tr:nth-child(even) {
+        background-color: #ffffff;
+    }
 
+    /* Behövs för att kunna visa innehåll via attributet data-label */
     td::before {
         content: attr(data-label);
-        /* Hämta och visa värdet från data-label */
         position: absolute;
         left: 0;
         top: 0;
@@ -267,15 +267,12 @@ th {
         font-weight: bold;
     }
 
-    tbody tr:nth-child(even) {
-        background-color: #ffffff;
-    }
-
     .infoblock {
         width: 84%;
     }
 }
 
+/* Mindre än 601px */
 @media screen and (max-width: 600px) {
     .navigation {
         position: fixed;
@@ -293,8 +290,7 @@ th {
         width: 96%;
     }
 
-    .infoblock {
-        
+    .infoblock {     
         width: 96%;
     }
 }

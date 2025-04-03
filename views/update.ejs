@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/style.css">
-
+    <!-- Faviconer och manifest -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -28,6 +28,7 @@
             <h1>Ändra kurs!</h1>
             <h2>Ange kursinformation!</h2>
         </div>
+        <!-- Hanterar error -->
         <% if(locals.errors.length> 0) { %>
             <ul class="errors">
                 <% errors.forEach((error)=> { %>
