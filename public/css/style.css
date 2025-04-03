@@ -209,29 +209,6 @@ th {
     margin: 1rem 0 .5rem;
 }
 
-@media screen and (max-width: 600px) {
-    .navigation {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .navigation li a {
-        padding: 0 25px;
-    }
-
-    form {
-        width: 96%;
-    }
-
-    .infoblock {
-        width: 96%;
-    }
-}
-
-
 @media screen and (max-width: 980px) {
     body {
         overflow-y: auto;
@@ -279,5 +256,31 @@ th {
 
     tbody tr:nth-child(even) {
         background-color: #ffffff;
+    }
+
+    .infoblock {
+        width: 84%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .navigation {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .navigation li a {
+        padding: 0 25px;
+    }
+
+    form {
+        width: 96%;
+    }
+
+    .infoblock {
+        width: 96%;
     }
 }
