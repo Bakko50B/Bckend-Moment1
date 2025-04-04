@@ -6,4 +6,4 @@ Skapar en hantering av en databas för de olika kurserna i webbutvecklingsprogra
 ## Sidan på nätet
 https://backend-moment1-bbui.onrender.com/
 
-OBS! Platsen kommer ta en studn att ladda då den ligger på en gratisserver.
+OBS! Platsen kommer ta en stund att ladda då den ligger på en gratisserver.
