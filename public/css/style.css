@@ -192,9 +192,10 @@ th {
 
 .infoblock {
     width: 80%;
+    max-width: 980px;
     margin: 10px auto;
     background-color: #f9f9f9;
-    padding: 10px;
+    padding: 2rem;
     padding-bottom: 4rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-radius: 7px;
@@ -202,8 +203,9 @@ th {
 }
 
 .infoblock p {
-    margin-top: .6rem;
-    font-size: 1.5rem;
+    margin: 0 0 1.6rem;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
 }
 
 .infoblock span {
@@ -212,7 +214,7 @@ th {
 }
 
 .infoblock h2 {
-    margin: 1rem 0 .5rem;
+    margin: 1rem 0 .3rem;
 }
 
 /* Mindre än 981px */

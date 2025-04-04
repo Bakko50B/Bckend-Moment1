@@ -29,31 +29,32 @@
         </div>
         <article class="infoblock">
             <h2>Uppgiften</h2>
-            <p>Webbplatsen används som redovisning av Moment 1 i kursen Backend-baserad webbutveckling (distans) vid
+            <p>Webbplatsen används som redovisning av Moment 1 i kursen Backend&shy;-baserad webbutveckling (distans)
+                vid
                 Mitthögskolan.</p>
             <p>Presentationen av kurserna har jag valt att göra i en tabell som representerar de olika kolumnerna i
-                databasens tabell. Vid mindre skärmar så har jag hittat, med hjälp av tutorial från nätet, en lösning
-                som
-                presenterar varje tabellrad som <span>"ett kort"</span>.</p>
+                databasens tabell.
             <h2>Min lösning</h2>
             <p>
-                Jag har löst min uppgift med hjälp av de verktyg som kursen introducerat. En serverlösning i form av
+                Jag har löst min uppgift med hjälp av de verktyg som kursen introducerat. En server&shy;lösning i form
+                av
                 installation av <span>Express.js</span> ligger som bas, och jag har valt att använda sqlite som databas.
             </p>
             <p>
-                Jag har följt kursens upplägg med installation av de olika paketen, och har som bas för själva
-                hanteringen
-                av servern en JavaScriptfil som jag har gett namnet <span>server.js</span>.
-                <br>I uppstart av sidan finns redan två kurser inmatade i databasen.
+                Jag har följt kursens upplägg med installa&shy;tion av de olika paketen, och har som bas för själva
+                hanteringen av servern en JavaScript&shy;fil som jag har gett namnet <span>server.js</span>.
+                <br>Vid start av sidan finns redan två kurser inmatade i databasen.
                 <br>Databasen och de två införda kurserna finns i filen <span>install.js</span>.
             </p>
             <h2>Sqlite</h2>
-            <p>Innan jag valde sqlite som databashanterare för uppgiften hade jag testat lite olika databaser och gjort
+            <p>Innan jag valde sqlite som databas&shy;hanterare för uppgiften hade jag testat lite olika databaser och
+                gjort
                 lite enkla övningar i Visual Studio Code med databaserna som jag skapat.</p>
-            <P>I en tidigare kurs och även innan jag började webbutvecklingsprogrammet på Mitthögskolan hade jag
-                erfarenhet av mySql, med tillhörande administrationsverktyg, phpMyAdmin.</P>
+            <P>I en tidigare kurs och även innan jag började webbutvecklings&shy;programmet på Mitthög&shy;skolan hade
+                jag
+                erfarenhet av mySql, med tillhörande administrations&shy;verktyg, phpMyAdmin.</P>
             <p>Med den bakgrunden och nyfikenhet på att prova något annat så valde jag att ta sqlite i denna uppgift.
-                <br>Fördelen med att ha databasmotorn integrerad i databasfilen lät lockande. Och med tanke på den
+                <br>Fördelen med att ha databas&shy;motorn integrerad i databasfilen lät lockande. Och med tanke på den
                 lilla datamängd som förväntas hamna i min databastabell så finns det ingen risk för dålig prestanda.
             </p>
             <p>Vid installationen av <a href="https://www.npmjs.com/package/sqlite3"><span>paketet sqlite3</span></a> så
@@ -68,19 +69,21 @@
                 att det gick att använda sqlite3 utan problem.
             </p>
             <p>
-                Jag har utöver det som jag hittat på kursportalen bland annat letat errorcode för sqlite. Jag hade först
+                Jag har utöver det som jag hittat på kurs&shy;portalen bland annat letat errorcode för sqlite. Jag hade
+                först
                 en generell
                 hantering av fel vid införande då det gäller Constraints. Jag hittade att man kunde leta efter
-                error.message.includes och på så sätt skriva ut bättre felmeddelanden.
+                <span>error.message.includes</span> och på så sätt skriva ut bättre fel&shy;meddelanden.
             </p>
-            <p>Jag jobbade ett tag med att hitta rätt placering av <span>db.clos()</span>. Jag hade logiska fel av
+            <p>Jag jobbade ett tag med att hitta rätt placering av <span>db.close()</span>. Jag hade logiska fel av
                 placeringen av denna kodrad i några av routerna. Men det löste sig. Jag har inte upplevt några fel
                 nyligen i alla fall.</p>
 
             <h2>Render</h2>
             <p>Innan denna kurs hade jag ingen erfarenhet av att använda Render för publicering av webbplatser. Som
-                alternativ visning av webbplasten och uppgiften finns möjligheten att spela in en video. Jag hade det
-                alternativet som en backupplösning (eller fallback som det brukar kallas). Jag ville försöka att
+                alternativ visning av webbplatsen och uppgiften finns möjligheten att spela in en video. Jag hade det
+                alterna&shy;tivet som en backupp&shy;lösning (eller fallback som det brukar kallas). Jag ville försöka
+                att
                 deploya min uppgift via Render och det lyckades till slut. Jag hade lite problem med att nå alla mina
                 repositories från Github, men med lite inställningar så gick det bra.
                 <br>Nu kan de som vill se resultatet välja hur länge de spenderar sin tid här!
@@ -92,15 +95,19 @@
             </p>
             <p>Det finns inga felmeddelanden i konsollen vid körning av webbplatsen.</p>
             <p>I Wave så klagas det på att jag har röda siffror för kulumnen med att ta bort från databasen. Jag väljer
-                trots det att ha kvar dessa då det kan upplevas som tydligare att något "illa" kan hända med de röda siffrorna där.</p>
+                trots det att ha kvar dessa då det kan upplevas som tydligare att något "illa" kan hända med de röda
+                siff&shy;rorna där.</p>
+            <p>Jag har också använt mig av webb&shy;tjänster som räknar ord för att hålla mig inom de rekommenderade
+                rad&shy;längderna. Erferenhet och kunskap inhämtad via kursen webb&shy;användbarhet.</p>
             <h2>Slutsatser</h2>
-            <p>När det handlar om webbprogrammering och utveckling för webben så finns det ett stort behov av att kunna
+            <p>När det handlar om webb&shy;programmering och utveckling för webben så finns det ett stort behov av att
+                kunna
                 hantera kopplingar till databaser. Det är ett bra sätt att spara data på och även att presentera data på
                 förstås.</p>
-            <p>Jag upplever det som en förutsättning för webbutveckling att veta hur man gör detta. </p>
+            <p>Jag upplever det som en förutsättning för webb&shy;utveckling att veta hur man gör detta. </p>
             <p>Kursen känns viktig!</p>
             <p>Att behärska och kunna alla steg utantill kommer nog ta ett tag, speciellt då det finns många olika
-                databassystem att välja på. Någonstans ska man börja!
+                databas&shy;system att välja på. Någonstans ska man börja!
             </p>
             <p>Detta är min början!</p>
         </article>
